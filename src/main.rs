@@ -1,12 +1,12 @@
 use rand::Rng;
 use std::io::{self, Write};
 
-fn main() {
-    let option: [&str; 3] = ["Gunting", "Batu", "Kertas"];
+const OPTION: [&str; 3] = ["Gunting", "Batu", "Kertas"];
 
+fn main() {
     let mut rng = rand::thread_rng();
-    let random = rng.gen_range(0..3);
-    let computer_input: &str = option[random];
+    let random = rng.gen_range(0..OPTION.len());
+    let computer_input: &str = OPTION[random];
     let player_input = get_player_input();
 
     let result = determine_winner(&player_input, computer_input);
@@ -18,13 +18,11 @@ fn main() {
 }
 
 fn get_player_input() -> String {
-    let option: [&str; 3] = ["Gunting", "Batu", "Kertas"];
-
     let mut input = String::new();
 
     println!("Pilihan yang ada:");
-    for i in 0..option.len() {
-        println!("{}. {}", i + 1, option[i]);
+    for i in 0..OPTION.len() {
+        println!("{}. {}", i + 1, OPTION[i]);
     }
     print!("\nLu pilih yang mana? ");
 
@@ -33,7 +31,7 @@ fn get_player_input() -> String {
 
     input = input.trim().to_string();
 
-    if !option.contains(&&*input) {
+    if !OPTION.contains(&&*input) {
         println!("Pilihan lu salah, masukin yang bener! 😡\n");
         return get_player_input();
     }
