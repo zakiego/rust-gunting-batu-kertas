@@ -62,3 +62,27 @@ fn determine_winner(player: &str, computer: &str) -> &'static str {
 
     return result;
 }
+
+#[test]
+fn test_determine_winner() {
+    assert_eq!(determine_winner("Gunting", "Batu"), "Lu kalah wkwk 🤪");
+    assert_eq!(
+        determine_winner("Gunting", "Kertas"),
+        "Hebat juga, lu menang 🫡🥳"
+    );
+    assert_eq!(determine_winner("Kertas", "Gunting"), "Lu kalah wkwk 🤪");
+    assert_eq!(
+        determine_winner("Kertas", "Batu"),
+        "Hebat juga, lu menang 🫡🥳"
+    );
+    assert_eq!(determine_winner("Batu", "Kertas"), "Lu kalah wkwk 🤪");
+    assert_eq!(
+        determine_winner("Batu", "Gunting"),
+        "Hebat juga, lu menang 🫡🥳"
+    );
+    assert_eq!(determine_winner("Batu", "Batu"), "Yah, seri 😐");
+    assert_eq!(determine_winner("Gunting", "Gunting"), "Yah, seri 😐");
+    assert_eq!(determine_winner("Kertas", "Kertas"), "Yah, seri 😐");
+
+    assert_eq!(determine_winner("Aaaaaa", "Aaaa"), "Ada error, check deh");
+}
